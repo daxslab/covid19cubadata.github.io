@@ -91,9 +91,6 @@ $(function () {
                 let $dateEnd = $("#date-end");
 
                 $dateStart.val("2020/03/11");
-                let today = new Date();
-                $dateEnd.val(today.getFullYear() + '/' + today.getMonth() + '/' + today.getDate());
-
                 let startDatePicker = $dateStart.datepicker({
                     defaultDate: "2020/03/11",
                     dateFormat: "yy/mm/dd",
@@ -109,6 +106,7 @@ $(function () {
                 }).on("change", function () {
                     startDatePicker.datepicker("option", "maxDate", getDate(this));
                 });
+                endDatePicker.datepicker('setDate', new Date());
 
                 let $nationality = $('#nationality');
                 _.each(domains, function (item, index) {
