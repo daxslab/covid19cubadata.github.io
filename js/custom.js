@@ -121,6 +121,29 @@ function round(number, digits = 2) {
     return Math.round((number + Number.EPSILON) * 10 ** digits) / 10 ** digits;
 }
 
+let $dateStart = $("#date-start");
+let $dateEnd = $("#date-end");
+
+$dateStart.val("2020/03/11");
+let today = new Date();
+$dateEnd.val(today.getFullYear() + '/' + today.getMonth() + '/' + today.getDate());
+
+let startDatePicker = $dateStart.datepicker({
+    defaultDate: "2020/03/11",
+    dateFormat: "yy/mm/dd",
+    minDate: "2020/03/11",
+}).on("change", function () {
+    endDatePicker.datepicker("option", "minDate", getDate(this));
+});
+
+let endDatePicker = $dateEnd.datepicker({
+    defaultDate: 0,
+    dateFormat: "yy/mm/dd",
+    maxDate: new Date(),
+}).on("change", function () {
+    startDatePicker.datepicker("option", "maxDate", getDate(this));
+});
+
 $.walker = {
     loaded: {},
     map: {
